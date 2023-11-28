@@ -6,4 +6,8 @@
     <string name="password">Password</string>
     <string name="sing_in">Sing In</string>
     <string name="create_new_account">Create New Account</string>
+    <string name="name">Name</string>
+    <string name="add_image">Add Image</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="sing_up">sing_Up</string>
 </resources>

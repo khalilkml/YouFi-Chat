@@ -1,5 +1,6 @@
-plugins {
-    id("com.android.application")
+    plugins {
+        id("com.android.application")
+        id("com.google.gms.google-services")
 }
 
 android {
@@ -12,7 +13,7 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
+        multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -47,5 +48,15 @@ dependencies {
     implementation("com.intuit.ssp:ssp-android:1.0.6")
     // Rounded ImageVie
     implementation("com.makeramen:roundedimageview:2.3.0")
+
+    //firebase
+    implementation(platform("com.google.firebase:firebase-bom:32.6.0"))
+    implementation("com.google.firebase:firebase-analytics")
+
+    implementation("com.google.firebase:firebase-messaging:23.3.1")
+    implementation("com.google.firebase:firebase-firestore:24.9.1")
+
+    //MultiDex
+    implementation("androidx.multidex:multidex:2.0.1")
 
 }
