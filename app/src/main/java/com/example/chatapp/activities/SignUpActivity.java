@@ -85,7 +85,6 @@ public class SignUpActivity extends AppCompatActivity {
                     startActivity(intent);
                 })
                 .addOnFailureListener(exception ->{
-
                     loading(false);
                     showToast(exception.getMessage());
                 });
