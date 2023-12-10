@@ -1,11 +1,16 @@
-    plugins {
+import java.io.InputStream
+import java.util.Properties
+
+plugins {
         id("com.android.application")
         id("com.google.gms.google-services")
 }
 
+
 android {
     namespace = "com.example.chatapp"
     compileSdk = 34
+
 
     defaultConfig {
         applicationId = "com.example.chatapp"
@@ -15,6 +20,14 @@ android {
         versionName = "1.0"
         multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        val properties = Properties()
+        val inputStream: InputStream = project.rootProject.file("local.properties").inputStream()
+        properties.load(inputStream)
+
+        val apiKey = properties.getProperty("apiKey")
+        buildConfigField("String", "apiKey", "\"$apiKey\"")
+
     }
 
     buildTypes {
@@ -32,6 +45,7 @@ android {
     }
     buildFeatures{
         viewBinding = true
+        buildConfig = true
     }
 }
 
