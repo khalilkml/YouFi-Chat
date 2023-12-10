@@ -22,7 +22,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsersActivity extends AppCompatActivity implements UsersListener {
+public class UsersActivity extends BaseActivity implements UsersListener {
 
     private ActivityUsersBinding binding;
     private PreferenceManager preferenceManager;
@@ -51,6 +51,7 @@ public class UsersActivity extends AppCompatActivity implements UsersListener {
                     if  (task.isSuccessful() && task.getResult() != null) {
                         List<User> users = new ArrayList<>();
                         for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
+                            //skip the current user info
                             if (currentUserId.equals(queryDocumentSnapshot.getId())) {
                                 continue;
                             }
@@ -91,6 +92,7 @@ public class UsersActivity extends AppCompatActivity implements UsersListener {
     @Override
     public void onUserClicked(User user) {
         Intent intent =new Intent(getApplicationContext(), ChatActivity.class);
+        //send user details
         intent.putExtra(Constants.KEY_USER, user);
         startActivity(intent);
         finish();

@@ -46,12 +46,15 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private  void setListeners(){
+        //for back to sign in
         binding.textSignIn.setOnClickListener(v -> onBackPressed());
+        //for signing up
         binding.buttonSingUp.setOnClickListener(v -> {
             if (isValidSignUpDetails()) {
                 signUp();
             }
         });
+        //picking up image profile
         binding.layoutImage.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -76,11 +79,13 @@ public class SignUpActivity extends AppCompatActivity {
                 .add(user)
                 .addOnSuccessListener(documentReference -> {
                     loading(false);
+                    //if online
                     preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN,true);
                     preferenceManager.putString(Constants.KEY_USER_ID, documentReference.getId());
                     preferenceManager.putString(Constants.KEY_NAME,binding.inputName.getText().toString());
                     preferenceManager.putString(Constants.KEY_IMAGE,encodedImage);
                     Intent intent =new Intent(getApplicationContext(),MainActivity.class);
+                    //to clear previous activities and make the main as the first activity
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 })
@@ -90,9 +95,10 @@ public class SignUpActivity extends AppCompatActivity {
                 });
     }
 
+    //encode image and resize it
     private String encodeImage(Bitmap bitmap){
         int previewWidth = 150;
-        int previewHeight = bitmap.getHeight() + previewWidth/bitmap.getWidth();
+        int previewHeight = bitmap.getHeight() * previewWidth/bitmap.getWidth();
         Bitmap previwBitmap = Bitmap.createScaledBitmap(bitmap,previewWidth,previewHeight, false);
         ByteArrayOutputStream byteArrayInputStream = new ByteArrayOutputStream();
         previwBitmap.compress(Bitmap.CompressFormat.JPEG,50,byteArrayInputStream);

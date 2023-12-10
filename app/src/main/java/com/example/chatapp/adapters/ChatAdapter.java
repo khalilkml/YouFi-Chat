@@ -18,6 +18,7 @@ import java.util.List;
 public class ChatAdapter extends  RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final List<ChatMessage> chatMessages;
+    //receiver means the other user
     private final Bitmap receiverProfileImage;
     private final String senderId;
 
