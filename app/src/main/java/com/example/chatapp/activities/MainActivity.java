@@ -73,7 +73,9 @@ public class MainActivity extends BaseActivity  implements ConversionListener {
                 startActivity(new Intent(getApplicationContext(), UsersActivity.class)));
 
         binding.groupframe.setOnClickListener(v ->
-                startActivity(new Intent(getApplicationContext(), UsersActivity.class)));
+                startActivity(new Intent(getApplicationContext(), GroupActivity.class)));
+        binding.groupicon.setOnClickListener(v ->
+                startActivity(new Intent(getApplicationContext(), GroupActivity.class)));
 
 
 

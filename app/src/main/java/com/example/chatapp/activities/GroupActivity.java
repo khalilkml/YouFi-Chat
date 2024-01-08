@@ -52,6 +52,10 @@ public class GroupActivity extends AppCompatActivity {
             pickImage.launch(intent);
 
         });
+        binding.layoutImageAdd.setOnClickListener(v ->
+                startActivity(new Intent(getApplicationContext(), friendlistsAcitivity.class)));
+        binding.layoutImage.setOnClickListener(v ->
+                startActivity(new Intent(getApplicationContext(), friendlistsAcitivity.class)));
         //for signing up
         binding.buttonSaveGroup.setOnClickListener(v -> {
             if (isValidGroupDetails()) {
