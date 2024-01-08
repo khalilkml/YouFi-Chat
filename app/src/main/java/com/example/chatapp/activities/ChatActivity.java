@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -138,6 +139,8 @@ public class ChatActivity extends BaseActivity {
                 if (response.isSuccessful()) {
                     try {
                         if (response.body() != null) {
+                            // Log the response body to understand the error further
+                            Log.d("FCM_RESPONSE", response.body());
                             JSONObject responseJson = new JSONObject(response.body());
                             JSONArray results = responseJson.getJSONArray("results");
                             if (responseJson.getInt("failure") == 1) {

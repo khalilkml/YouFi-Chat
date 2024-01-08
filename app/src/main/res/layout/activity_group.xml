@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.SignUpActivity">
+    tools:context=".activities.GroupActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_7sdp"
-        android:layout_marginEnd="@dimen/_7sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_13sdp"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
@@ -18,11 +18,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_20sdp"
-            android:text="@string/create_new_account"
+            android:text="@string/create_new_group"
             android:textColor="@color/primary_text"
             android:textSize="@dimen/_18ssp"
             android:textStyle="bold"/>
-        
+
         <FrameLayout
             android:id="@+id/layoutImage"
             android:layout_width="wrap_content"
@@ -48,13 +48,14 @@
 
         </FrameLayout>
 
+
         <EditText
-            android:id="@+id/inputName"
+            android:id="@+id/inputGroupName"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_45sdp"
             android:layout_marginTop="@dimen/_20sdp"
             android:background="@drawable/background_input"
-            android:hint="@string/name"
+            android:hint="@string/group_name"
             android:imeOptions="actionNext"
             android:importantForAutofill="no"
             android:inputType="text"
@@ -63,64 +64,65 @@
             android:textColor="@color/primary_text"
             android:textSize="@dimen/_13ssp"/>
 
-
-        <EditText
-            android:id="@+id/inputEmail"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_45sdp"
-            android:layout_marginTop="@dimen/_16sdp"
-            android:background="@drawable/background_input"
-            android:hint="@string/email"
-            android:imeOptions="actionNext"
-            android:importantForAutofill="no"
-            android:inputType="textEmailAddress"
-            android:paddingStart="@dimen/_16ssp"
-            android:paddingEnd="@dimen/_16ssp"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginStart="-130dp"
+            android:text="@string/group_members"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/_13ssp"/>
+            android:textSize="@dimen/_13ssp"
+            android:textStyle="normal"/>
 
-        <EditText
-            android:id="@+id/inputPassword"
+        <HorizontalScrollView
+            android:id="@+id/category_menu"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_45sdp"
-            android:layout_marginTop="@dimen/_16sdp"
-            android:background="@drawable/background_input"
-            android:hint="@string/password"
-            android:imeOptions="actionNext"
-            android:importantForAutofill="no"
-            android:inputType="textPassword"
-            android:paddingStart="@dimen/_16ssp"
-            android:paddingEnd="@dimen/_16ssp"
-            android:textColor="@color/primary_text"
-            android:textSize="@dimen/_13ssp"/>
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
 
-        <EditText
-            android:id="@+id/inputConfirmPassword"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_45sdp"
-            android:layout_marginTop="@dimen/_16sdp"
-            android:background="@drawable/background_input"
-            android:hint="@string/confirm_password"
-            android:imeOptions="actionDone"
-            android:importantForAutofill="no"
-            android:inputType="textPassword"
-            android:paddingStart="@dimen/_16ssp"
-            android:paddingEnd="@dimen/_16ssp"
-            android:textColor="@color/primary_text"
-            android:textSize="@dimen/_13ssp"/>
+
+            <FrameLayout
+                android:id="@+id/layoutImageAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/imageProfile2"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:background="@drawable/background_image"
+                    android:scaleType="centerCrop"
+                    app:riv_oval="true"/>
+
+                <ImageView
+                    android:id="@+id/textAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/round_add_24"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="11sp"/>
+
+            </FrameLayout>
+
+
+        </HorizontalScrollView>
+
+
+
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_16sdp"
             android:animateLayoutChanges="true">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonSingUp"
+                android:id="@+id/buttonSaveGroup"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
                 android:layout_marginTop="@dimen/_16sdp"
-                android:text="@string/sing_up"
+                android:text="@string/save_group"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 app:cornerRadius="@dimen/_8sdp"
@@ -133,21 +135,7 @@
                 android:layout_gravity="center"
                 android:visibility="invisible"/>
 
+
         </FrameLayout>
-
-
-
-        <TextView
-            android:id="@+id/textSignIn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:text="@string/sing_in"
-            android:textColor="@color/primary"
-            android:textSize="@dimen/_13ssp"
-            android:textStyle="bold"
-            />
-
     </LinearLayout>
-
 </ScrollView>

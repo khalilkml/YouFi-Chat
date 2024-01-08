@@ -1,16 +1,22 @@
 package com.example.chatapp.activities;
 
+import static com.example.chatapp.R.layout.activity_main;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.motion.widget.MotionLayout;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.chatapp.Listeners.ConversionListener;
+import com.example.chatapp.R;
 import com.example.chatapp.adapters.RecentConversationAdapter;
 import com.example.chatapp.databinding.ActivityMainBinding;
 import com.example.chatapp.models.ChatMessage;
@@ -60,8 +66,17 @@ public class MainActivity extends BaseActivity  implements ConversionListener {
 
     private void setListeners(){
         binding.imageSignOut.setOnClickListener(v -> SignOut());
-        binding.fabNewChat.setOnClickListener(v ->
+
+        binding.contacteframe.setOnClickListener(v ->
                 startActivity(new Intent(getApplicationContext(), UsersActivity.class)));
+        binding.contacteicon.setOnClickListener(v ->
+                startActivity(new Intent(getApplicationContext(), UsersActivity.class)));
+
+        binding.groupframe.setOnClickListener(v ->
+                startActivity(new Intent(getApplicationContext(), UsersActivity.class)));
+
+
+
     }
 
 

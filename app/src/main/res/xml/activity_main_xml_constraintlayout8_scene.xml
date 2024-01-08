@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="@integer/material_motion_duration_medium_1"
+        motion:motionInterpolator="overshoot">
+       <KeyFrameSet>
+       </KeyFrameSet>
+        <OnClick motion:targetId="@+id/fabNewChat"
+            motion:clickAction="toggle" />
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/fabNewChat"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="@dimen/_24sdp"
+            android:layout_marginEnd="@dimen/_24sdp"
+            android:layout_marginRight="@dimen/_24sdp" />
+        <Constraint
+            android:id="@+id/contacteframe"
+            motion:layout_constraintEnd_toEndOf="@+id/fabNewChat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="@+id/fabNewChat"
+            motion:layout_constraintTop_toTopOf="@+id/fabNewChat"
+            android:alpha="0" />
+        <Constraint
+            android:id="@+id/groupframe"
+            motion:layout_constraintEnd_toEndOf="@+id/contacteframe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="@+id/contacteframe"
+            motion:layout_constraintTop_toTopOf="@+id/fabNewChat"
+
+            android:alpha="0"
+            />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/fabNewChat"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="@dimen/_24sdp"
+            android:layout_marginEnd="@dimen/_24sdp"
+            android:layout_marginRight="@dimen/_24sdp" />
+        <Constraint
+            android:id="@+id/contacteframe"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="@+id/fabNewChat"
+            android:layout_marginBottom="@dimen/_53sdp"
+            android:layout_marginEnd="@dimen/_28sdp"
+            android:elevation="6dp"/>
+        <Constraint
+            android:id="@+id/groupframe"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="@+id/contacteframe"
+            android:layout_marginBottom="@dimen/_44sdp"
+            android:layout_marginEnd="@dimen/_28sdp"
+            android:elevation="6dp"/>
+    </ConstraintSet>
+</MotionScene>

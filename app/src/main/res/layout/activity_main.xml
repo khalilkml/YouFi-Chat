@@ -6,15 +6,22 @@
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
     android:background="@color/primary"
-    tools:context=".activities.MainActivity">
+    tools:context=".activities.MainActivity"
+    >
+
+    <FrameLayout
+        android:id="@+id/constraint"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
 
     <androidx.constraintlayout.motion.widget.MotionLayout
-        android:id="@+id/constraintLayout"
+        android:id="@+id/constraintLayout8"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:animateLayoutChanges="true"
         android:background="@color/primary"
-        app:layoutDescription="@xml/activity_main_xml_constraintlayout_scene">
+        app:layoutDescription="@xml/activity_main_xml_constraintlayout8_scene">
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/imageProfile"
@@ -60,7 +67,7 @@
             app:layout_constraintTop_toTopOf="@id/imageProfile" />
 
         <FrameLayout
-            android:id="@+id/frameLayout"
+            android:id="@+id/frameLayout8"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/_16sdp"
@@ -92,8 +99,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_28sdp"
-            android:layout_marginRight="@dimen/_24sdp"
-            android:layout_marginBottom="@dimen/_36sdp"
+            android:layout_marginBottom="@dimen/_56sdp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="@+id/contacteframe"
@@ -105,7 +111,7 @@
                 android:paddingStart="@dimen/_16sdp"
                 android:paddingEnd="@dimen/_8sdp"
                 android:text="New group"
-                android:textSize="@dimen/_17ssp" />
+                android:textSize="@dimen/_15ssp" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:layout_width="wrap_content"
@@ -136,16 +142,18 @@
                 android:paddingStart="@dimen/_16sdp"
                 android:paddingEnd="@dimen/_8sdp"
                 android:text="Add contact"
-                android:textSize="@dimen/_17ssp" />
+                android:textSize="@dimen/_15ssp" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/contacteicon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/ic_profile"
                 app:backgroundTint="@color/secondary_text"
                 app:fabSize="mini"
-                app:tint="@color/white" />
+                app:tint="@color/white"
+                tools:ignore="DuplicateClickableBoundsCheck" />
 
         </LinearLayout>
 
@@ -165,4 +173,6 @@
             app:tint="@color/white" />
 
     </androidx.constraintlayout.motion.widget.MotionLayout>
+
+    </FrameLayout>
 </FrameLayout>
