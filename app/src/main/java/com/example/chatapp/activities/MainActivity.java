@@ -65,22 +65,17 @@ public class MainActivity extends BaseActivity  implements ConversionListener {
     }
 
     private void setListeners(){
-        binding.imageSignOut.setOnClickListener(v -> SignOut());
-
+        binding.imageSignOut.setOnClickListener(v ->
+                SignOut());
         binding.contacteframe.setOnClickListener(v ->
                 startActivity(new Intent(getApplicationContext(), UsersActivity.class)));
         binding.contacteicon.setOnClickListener(v ->
                 startActivity(new Intent(getApplicationContext(), UsersActivity.class)));
-
         binding.groupframe.setOnClickListener(v ->
                 startActivity(new Intent(getApplicationContext(), GroupActivity.class)));
         binding.groupicon.setOnClickListener(v ->
                 startActivity(new Intent(getApplicationContext(), GroupActivity.class)));
-
-
-
     }
-
 
     private void loadUserDetails(){
         binding.textName.setText(preferenceManager.getString(Constants.KEY_NAME));

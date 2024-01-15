@@ -16,17 +16,6 @@
             </Target>
           </targetSelectedWithDropDown>
           <timeTargetWasSelectedWithDropDown value="2023-12-23T12:05:36.234923050Z" />
-          <runningDeviceTargetsSelectedWithDialog>
-            <Target>
-              <type value="RUNNING_DEVICE_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="SERIAL_NUMBER" />
-                  <value value="adb-RZ8RC26PPAR-XMRuQi._adb-tls-connect._tcp" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </runningDeviceTargetsSelectedWithDialog>
         </State>
       </entry>
     </value>
