@@ -232,6 +232,7 @@ public class ChatActivity extends BaseActivity {
                     chatMessage.message = documentChange.getDocument().getString(Constants.KEY_MESSAGE);
                     chatMessage.dateTime = getReadableDateTime(documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP));
                     chatMessage.dataObject = documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP);
+                    chatMessage.ismessage = documentChange.getDocument().getBoolean(Constants.KEY_ISMESSAGE);
                     chatMessages.add(chatMessage);
                 }
             }
@@ -297,7 +298,9 @@ public class ChatActivity extends BaseActivity {
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 pickImage.launch(intent);
-                sendMessage(encodedImage,false);
+                if (encodedImage != null &&!encodedImage.isEmpty()){
+                    sendMessage(encodedImage,false);
+                }
             }else {
                 if (!binding.inputMessage.getText().toString().equals("")){
                     sendMessage(binding.inputMessage.getText().toString(),true);
