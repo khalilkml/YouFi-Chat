@@ -49,7 +49,7 @@ public class MainActivity extends BaseActivity  implements ConversionListener {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        preferenceManager = new PreferenceManager(getApplicationContext());
+        preferenceManager = new PreferenceManager(this);
         init();
         loadUserDetails();
         getToken();

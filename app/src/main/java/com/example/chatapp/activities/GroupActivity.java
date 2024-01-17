@@ -15,7 +15,9 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.chatapp.Listeners.UsersListener;
 import com.example.chatapp.R;
+import com.example.chatapp.adapters.UsersAdapter;
 import com.example.chatapp.databinding.ActivityGroupBinding;
 import com.example.chatapp.databinding.ActivitySignUpBinding;
 import com.example.chatapp.models.User;
@@ -26,29 +28,39 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
-public class GroupActivity extends BaseActivity {
+public class GroupActivity extends BaseActivity implements UsersListener {
 
     private ActivityGroupBinding binding;
     private PreferenceManager preferenceManager;
     private User Member;
     private String encodedImage;
     ArrayList<User> userArrayList;
-    ArrayList<User> MembersList =new ArrayList<>();
+    List<User> MembersList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityGroupBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         LoadMemberDetails();
-        preferenceManager = new PreferenceManager(getApplicationContext());
+        preferenceManager = new PreferenceManager(this);
         setListeners();
     }
-
-    private void LoadMemberDetails(){
-        Member = (User) getIntent().getSerializableExtra(Constants.KEY_USER);
-        MembersList.add(Member);
+    private void LoadMemberDetails() {
+        if (getIntent().hasExtra(Constants.KEY_USER)) {
+            Member = (User) getIntent().getSerializableExtra(Constants.KEY_USER);
+            MembersList.add(Member);
+            // Check if MembersList has members before
+            if (!MembersList.isEmpty() && MembersList.size() != 0) {
+                userArrayList = new ArrayList<>();  // Initialize userArrayList
+                UsersAdapter usersAdapter = new UsersAdapter(MembersList, this);
+                binding.usersRecyclerView.setAdapter(usersAdapter);
+                binding.usersRecyclerView.setVisibility(View.VISIBLE);
+            }
+        }
     }
+
 
     //Customize it
     private  void setListeners(){
@@ -60,12 +72,27 @@ public class GroupActivity extends BaseActivity {
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             pickImage.launch(intent);
         });
-        binding.layoutImageAdd.setOnClickListener(v ->
-                startActivity(new Intent(getApplicationContext(), friendlistsAcitivity.class)));
-        binding.imageProfile2.setOnClickListener(v ->
-                startActivity(new Intent(getApplicationContext(), friendlistsAcitivity.class)));
-        binding.textAdd.setOnClickListener(v ->
-                startActivity(new Intent(getApplicationContext(), friendlistsAcitivity.class)));
+        binding.layoutImageAdd.setOnClickListener(v -> {
+            if(MembersList.isEmpty()){
+                startActivity(new Intent(getApplicationContext(), friendlistsAcitivity.class));
+            }else{
+                Toast.makeText(this, "Start with one member", Toast.LENGTH_SHORT).show();
+            }
+        });
+        binding.imageProfile2.setOnClickListener(v -> {
+            if(MembersList.isEmpty()){
+                startActivity(new Intent(getApplicationContext(), friendlistsAcitivity.class));
+            }else{
+                Toast.makeText(this, "Start with one member", Toast.LENGTH_SHORT).show();
+            }
+        });
+        binding.textAdd.setOnClickListener(v -> {
+            if(MembersList.isEmpty()){
+                startActivity(new Intent(getApplicationContext(), friendlistsAcitivity.class));
+            }else{
+                Toast.makeText(this, "Start with one member", Toast.LENGTH_SHORT).show();
+            }
+        });
         //for signing up
         binding.buttonSaveGroup.setOnClickListener(v -> {
             if (isValidGroupDetails()) {
@@ -138,5 +165,10 @@ public class GroupActivity extends BaseActivity {
             binding.progressBar.setVisibility(View.INVISIBLE);
             binding.buttonSaveGroup.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    public void onUserClicked(User user) {
+
     }
 }

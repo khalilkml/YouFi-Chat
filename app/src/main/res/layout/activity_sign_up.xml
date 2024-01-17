@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_20sdp"
             android:text="@string/create_new_account"
-            android:textColor="@color/primary_text"
+            android:textColor="?colorSecondary"
             android:textSize="@dimen/_18ssp"
             android:textStyle="bold"/>
         
@@ -60,7 +60,8 @@
             android:inputType="text"
             android:paddingStart="@dimen/_16ssp"
             android:paddingEnd="@dimen/_16ssp"
-            android:textColor="@color/primary_text"
+            android:textColor="@color/black"
+            android:textColorHint="@color/secondary_text"
             android:textSize="@dimen/_13ssp"/>
 
 
@@ -76,6 +77,7 @@
             android:inputType="textEmailAddress"
             android:paddingStart="@dimen/_16ssp"
             android:paddingEnd="@dimen/_16ssp"
+            android:textColorHint="@color/secondary_text"
             android:textColor="@color/primary_text"
             android:textSize="@dimen/_13ssp"/>
 
@@ -91,7 +93,8 @@
             android:inputType="textPassword"
             android:paddingStart="@dimen/_16ssp"
             android:paddingEnd="@dimen/_16ssp"
-            android:textColor="@color/primary_text"
+            android:textColorHint="@color/secondary_text"
+            android:textColor="?colorOnPrimary"
             android:textSize="@dimen/_13ssp"/>
 
         <EditText
@@ -106,6 +109,7 @@
             android:inputType="textPassword"
             android:paddingStart="@dimen/_16ssp"
             android:paddingEnd="@dimen/_16ssp"
+            android:textColorHint="@color/secondary_text"
             android:textColor="@color/primary_text"
             android:textSize="@dimen/_13ssp"/>
 

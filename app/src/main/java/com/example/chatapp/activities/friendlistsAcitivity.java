@@ -36,7 +36,7 @@ public class friendlistsAcitivity extends BaseActivity implements UsersListener 
         super.onCreate(savedInstanceState);
         binding = ActivityFriendlistsAcitivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        preferenceManager = new PreferenceManager(getApplicationContext());
+        preferenceManager = new PreferenceManager(this);
         setListeners();
         getFriendsList();
     }

@@ -78,7 +78,8 @@
             android:text="@string/sing_in"
             android:textColor="@color/white"
             android:textStyle="bold"
-            app:cornerRadius="@dimen/_8sdp" />
+            app:cornerRadius="@dimen/_8sdp"
+                />
 
             <ProgressBar
                 android:id="@+id/progressBar"

@@ -17,7 +17,11 @@ public class PreferenceManager {
     private final SharedPreferences sharedPreferences;
 
     public PreferenceManager(Context context) {
-        sharedPreferences = context.getSharedPreferences(Constants.KEY_PREFERENCE_NAME, Context.MODE_PRIVATE);
+        if (context != null) {
+            sharedPreferences = context.getSharedPreferences(Constants.KEY_PREFERENCE_NAME, Context.MODE_PRIVATE);
+        } else {
+            throw new IllegalArgumentException("Context cannot be null");
+        }
     }
 
     public void putBoolean(String key, Boolean value){
@@ -81,6 +85,9 @@ public class PreferenceManager {
 
     private ArrayList<String> deserializeFriendArrayList(String serializedData) {
         try {
+            if (serializedData == null) {
+                return new ArrayList<>();  // or handle it according to your logic
+            }
             byte[] bytes = serializedData.getBytes("ISO-8859-1");
             ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
             ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);

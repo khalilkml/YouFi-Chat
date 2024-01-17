@@ -4,6 +4,8 @@
 
     <item name="colorPrimary">@color/primary</item>
     <item name= "android:statusBarColor" >@color/primary</item>
+    <item name= "colorSecondary" >@color/primary_text</item>
+    <item name= "colorOnPrimary" >@color/black</item>
 
     </style>
   <!-- Base application theme. -->

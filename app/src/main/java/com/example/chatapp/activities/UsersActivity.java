@@ -34,7 +34,7 @@ public class UsersActivity extends BaseActivity implements UsersListener {
         super.onCreate(savedInstanceState);
         binding = ActivityUsersBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        preferenceManager = new PreferenceManager(getApplicationContext());
+        preferenceManager = new PreferenceManager(this);
         setListeners();
     }
 
