@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.chatapp.Listeners.ConversionListener;
+import com.example.chatapp.R;
 import com.example.chatapp.databinding.ItemContainerRecentConversationBinding;
 import com.example.chatapp.models.ChatMessage;
 import com.example.chatapp.models.User;
@@ -46,7 +47,10 @@ public class RecentConversationAdapter extends RecyclerView.Adapter<RecentConver
 
     @Override
     public void onBindViewHolder(@NonNull RecentConversationAdapter.ConversionViewHolder holder, int position) {
-        holder.setData(chatMessages.get(position));
+            ChatMessage chatMessage = chatMessages.get(position);
+            Boolean isimage = false;
+            isimage = chatMessage.ismessage;
+            holder.setData(chatMessage, isimage);
     }
 
     @Override
@@ -63,10 +67,23 @@ public class RecentConversationAdapter extends RecyclerView.Adapter<RecentConver
             binding = itemContainerRecentConversationBinding;
         }
 
-        void setData( ChatMessage chatMessage) {
+        void setData(ChatMessage chatMessage, Boolean isimage) {
             binding.imageProfile.setImageBitmap(getConversationImage(chatMessage.conversationImage));
             binding.textName.setText(chatMessage.conversationName);
-            binding.textRecentMessage.setText(chatMessage.message);
+
+            // Check if isimage is not null before accessing it
+            if (isimage != null && !isimage) {
+                // If isimage is true, display the text
+                binding.textRecentMessage.setText(chatMessage.message);
+                binding.textRecentMessage.setVisibility(View.VISIBLE);
+                binding.Imagemessage.setVisibility(View.INVISIBLE);
+            } else {
+                // If isimage is false or null, display the image icon
+                binding.textRecentMessage.setVisibility(View.INVISIBLE);
+                binding.Imagemessage.setImageResource(R.drawable.baseline_image_24);
+                binding.Imagemessage.setVisibility(View.VISIBLE);
+            }
+
             binding.getRoot().setOnClickListener(v -> {
                 User user = new User();
                 user.id = chatMessage.conversationId;
@@ -75,6 +92,7 @@ public class RecentConversationAdapter extends RecyclerView.Adapter<RecentConver
                 conversionListener.onConversionClick(user);
             });
         }
+
     }
     private Bitmap getConversationImage(String encodedImage) {
         if (encodedImage != null && !encodedImage.isEmpty()) {

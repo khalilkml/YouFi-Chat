@@ -98,7 +98,7 @@ public class ChatActivity extends BaseActivity {
         database.collection(Constants.KEY_COLLECTION_CHAT).add(message);
         //if already there is a conversation so update the last message and date
         if (conversionId != null) {
-            updateConversion(binding.inputMessage.getText().toString());
+            updateConversion(binding.inputMessage.getText().toString(),isImage);
         }else {
             //else create a conversation
             HashMap<String, Object> conversion = new HashMap<>();
@@ -111,6 +111,7 @@ public class ChatActivity extends BaseActivity {
             conversion.put(Constants.KEY_RECEIVER_NAME, receiverUser.name);
             conversion.put(Constants.KEY_RECEIVER_IMAGE, receiverUser.image);
             conversion.put(Constants.KEY_LAST_MESSAGE, binding.inputMessage.getText().toString());
+            conversion.put(Constants.KEY_ISMESSAGE, !isImage);
             conversion.put(Constants.KEY_TIMESTAMP, new Date());
             addConversion(conversion);
         }
@@ -124,6 +125,7 @@ public class ChatActivity extends BaseActivity {
                 data.put(Constants.KEY_NAME, preferenceManager.getString(Constants.KEY_NAME));
                 data.put(Constants.KEY_FCM_TOKEN, preferenceManager.getString(Constants.KEY_FCM_TOKEN));
                 data.put(Constants.KEY_MESSAGE, binding.inputMessage.getText().toString());
+                data.put(Constants.KEY_ISMESSAGE, !isImage);
 
                 JSONObject body = new JSONObject();
                 body.put(Constants.REMOTE_MSG_DATA, data);
@@ -298,7 +300,7 @@ public class ChatActivity extends BaseActivity {
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 pickImage.launch(intent);
-                if (encodedImage != null &&!encodedImage.isEmpty()){
+                if (encodedImage != null && !encodedImage.isEmpty()){
                     sendMessage(encodedImage,false);
                 }
             }else {
@@ -335,11 +337,12 @@ public class ChatActivity extends BaseActivity {
                 .addOnSuccessListener(documentReference -> conversionId = documentReference.getId());
     }
 
-    private void updateConversion(String message) {
+    private void updateConversion(String message,Boolean isImageUpdate) {
         DocumentReference documentReference =
                 database.collection(Constants.KEY_COLLECTION_CONVERSATIONS).document(conversionId);
         documentReference.update(
                 Constants.KEY_LAST_MESSAGE, message,
+                Constants.KEY_ISMESSAGE, isImageUpdate,
                 Constants.KEY_TIMESTAMP, new Date()
         );
     }

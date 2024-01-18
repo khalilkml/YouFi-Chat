@@ -119,6 +119,7 @@ public class MainActivity extends BaseActivity  implements ConversionListener {
                       chatMessage.conversationId = documentChange.getDocument().getString(Constants.KEY_SENDER_ID);
                     }
                     chatMessage.message = documentChange.getDocument().getString(Constants.KEY_LAST_MESSAGE);
+                    chatMessage.ismessage = documentChange.getDocument().getBoolean(Constants.KEY_ISMESSAGE);
                     chatMessage.dataObject = documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP);
                     conversations.add(chatMessage);
                     } else if (documentChange.getType() == DocumentChange.Type.MODIFIED) {
@@ -127,6 +128,7 @@ public class MainActivity extends BaseActivity  implements ConversionListener {
                         String receiverId = documentChange.getDocument().getString(Constants.KEY_RECEIVER_ID);
                         if (conversations.get(i).senderId.equals(senderId) && conversations.get(i).receiverId.equals(receiverId)) {
                             conversations.get(i).message = documentChange.getDocument().getString(Constants.KEY_LAST_MESSAGE);
+                            conversations.get(i).ismessage = documentChange.getDocument().getBoolean(Constants.KEY_ISMESSAGE);
                             conversations.get(i).dataObject = documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP);
                             break;
                         }
