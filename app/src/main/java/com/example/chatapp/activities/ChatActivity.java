@@ -1,10 +1,5 @@
 package com.example.chatapp.activities;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,6 +10,10 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 
 import com.example.chatapp.R;
 import com.example.chatapp.adapters.ChatAdapter;
@@ -267,7 +266,7 @@ public class ChatActivity extends BaseActivity {
         binding.textName.setText(receiverUser.name);
     }
     private String encodeImage(Bitmap bitmap){
-        int previewWidth = 150;
+        int previewWidth = 450;
         int previewHeight = bitmap.getHeight() * previewWidth/bitmap.getWidth();
         Bitmap previwBitmap = Bitmap.createScaledBitmap(bitmap,previewWidth,previewHeight, false);
         ByteArrayOutputStream byteArrayInputStream = new ByteArrayOutputStream();

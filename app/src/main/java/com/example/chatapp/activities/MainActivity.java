@@ -1,22 +1,15 @@
 package com.example.chatapp.activities;
 
-import static com.example.chatapp.R.layout.activity_main;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.motion.widget.MotionLayout;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.chatapp.Listeners.ConversionListener;
-import com.example.chatapp.R;
 import com.example.chatapp.adapters.RecentConversationAdapter;
 import com.example.chatapp.databinding.ActivityMainBinding;
 import com.example.chatapp.models.ChatMessage;
@@ -67,14 +60,24 @@ public class MainActivity extends BaseActivity  implements ConversionListener {
     private void setListeners(){
         binding.imageSignOut.setOnClickListener(v ->
                 SignOut());
-        binding.contacteframe.setOnClickListener(v ->
-                startActivity(new Intent(getApplicationContext(), UsersActivity.class)));
-        binding.contacteicon.setOnClickListener(v ->
-                startActivity(new Intent(getApplicationContext(), UsersActivity.class)));
-        binding.groupframe.setOnClickListener(v ->
-                startActivity(new Intent(getApplicationContext(), GroupActivity.class)));
-        binding.groupicon.setOnClickListener(v ->
-                startActivity(new Intent(getApplicationContext(), GroupActivity.class)));
+        binding.contacteframe.setOnClickListener(v -> {
+            startActivity(new Intent(getApplicationContext(), UsersActivity.class));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                binding.constraintLayout8.restoreDefaultFocus();
+            }
+        });
+        binding.contacteicon.setOnClickListener(v -> {
+            startActivity(new Intent(getApplicationContext(), UsersActivity.class));
+        });
+        binding.groupframe.setOnClickListener(v -> {
+            startActivity(new Intent(getApplicationContext(), GroupActivity.class));
+        });
+        binding.groupicon.setOnClickListener(v -> {
+            startActivity(new Intent(getApplicationContext(), GroupActivity.class));
+        });
+        binding.imageProfile.setOnClickListener(v -> {
+            startActivity(new Intent(getApplicationContext(), ProfilActivity.class));
+        });
     }
 
     private void loadUserDetails(){
@@ -140,6 +143,7 @@ public class MainActivity extends BaseActivity  implements ConversionListener {
             binding.conversationsRecyclerView.smoothScrollToPosition(0);
             binding.conversationsRecyclerView.setVisibility(View.VISIBLE);
             binding.progressBar.setVisibility(View.GONE);
+
         }
     };
 

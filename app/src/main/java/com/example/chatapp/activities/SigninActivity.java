@@ -1,31 +1,26 @@
  package com.example.chatapp.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
+ import android.content.Intent;
+ import android.os.Bundle;
+ import android.util.Patterns;
+ import android.view.View;
+ import android.widget.Toast;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Patterns;
-import android.view.View;
-import android.widget.Toast;
+ import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.chatapp.R;
-import com.example.chatapp.databinding.ActivitySigninBinding;
-import com.example.chatapp.utilities.Constants;
-import com.example.chatapp.utilities.PreferenceManager;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
-import java.util.Objects;
+ import com.example.chatapp.databinding.ActivitySigninBinding;
+ import com.example.chatapp.utilities.Constants;
+ import com.example.chatapp.utilities.PreferenceManager;
+ import com.google.firebase.firestore.DocumentSnapshot;
+ import com.google.firebase.firestore.FirebaseFirestore;
 
  public class SigninActivity extends AppCompatActivity {
 
-    private ActivitySigninBinding binding;
+    public ActivitySigninBinding binding;
     private PreferenceManager preferenceManager;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         preferenceManager = new PreferenceManager(this);
         //if the user already sign in it change fragment into main directly
@@ -65,6 +60,8 @@ import java.util.Objects;
                         preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
                         preferenceManager.putString(Constants.KEY_USER_ID, documentSnapshot.getId());
                         preferenceManager.putString(Constants.KEY_NAME, documentSnapshot.getString(Constants.KEY_NAME));
+                        preferenceManager.putString(Constants.KEY_EMAIL, documentSnapshot.getString(Constants.KEY_EMAIL));
+                        preferenceManager.putString(Constants.KEY_PASSWORD, documentSnapshot.getString(Constants.KEY_PASSWORD));
                         preferenceManager.putString(Constants.KEY_IMAGE, documentSnapshot.getString(Constants.KEY_IMAGE));
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -90,7 +87,7 @@ import java.util.Objects;
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
-    private Boolean isValidSignInDetails(){
+    public Boolean isValidSignInDetails(){
         if (binding.inputEmail.getText().toString().trim().isEmpty()){
             showToast("Enter email");
             return false;

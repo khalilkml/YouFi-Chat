@@ -15,6 +15,9 @@
         android:theme="@style/Theme.ChatApp"
         tools:targetApi="31">
         <activity
+            android:name=".activities.ProfilActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.friendlistsAcitivity"
             android:exported="false" />
         <activity
