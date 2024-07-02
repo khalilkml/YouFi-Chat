@@ -10,6 +10,7 @@ YouFi Chat is a messaging application developed using Firestore, Firebase Cloud 
 - Light and Dark themes
 - Contact management
 - send message/image
+- Online/Offline status indication
 
 ## Screenshots
 ### Sign up
