@@ -51,7 +51,7 @@ YouFi Chat is a messaging application developed using Firestore, Firebase Cloud 
 1. Clone the repository:
     
     ```bash
-    git clone <https://github.com/yourusername/youfi-chat.git>
+    git clone https://github.com/khalilkml/YouFi-Chat.git
     
     ```
     
